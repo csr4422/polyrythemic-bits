@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+    <title>polyrythemic</title>
+
+</head>
+
+<body>
+    <canvas id="myCanvas" style="background-color: black;"></canvas>
+    <script src="track.js"></script>
+    <script src="ball.js"></script>
+    <script src="sound.js"></script>
+
+
+    <script>
+        const size = 700;
+        myCanvas.width = size;
+        myCanvas.height = size;
+        const trackCenter = { x: size / 2, y: size / 2 };
+        const trackRadius = 100;
+        const ballRadius = 10;
+        const ballSpeed = 0.02;
+        // Accessing canvas drawing context
+        const ctx = myCanvas.getContext("2d");
+        const track = new Track(trackCenter, trackRadius);
+        const ball = new Ball(track, ballRadius, ballSpeed);
+        //making animation of the ball 
+        animate();
+        function animate() {
+            //clearing every thisg from the canvas
+            ctx.clearRect(0, 0, size, size);
+            //redrawing things on each frame
+            track.draw(ctx);
+            //making the ball move
+            ball.move();
+            ball.draw(ctx);
+
+            requestAnimationFrame(animate);
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
